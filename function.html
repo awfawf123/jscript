@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src = "function.js"></script>
+</head>
+<body>
+    <p style="background-color: green;" id="showResult"></p>
+    <button onclick="document.getElementById('showResult').innerHTML = minus(30,20)">클릭</button>
+    <div id="showDiv"></div>
+    <script>
+        var pTag = document.getElementById("showResult");
+        pTag.innerText = concat('34', '37');
+        document.getElementById("showDiv").innerText = arySum();
+        console.log("mySum: " + mySum());
+
+        var yourSum = mySum;
+        console.log("yourSum: "+ yourSum());
+
+        var elem = document.getElementById("showDiv");
+        setBackgroundColor(elem);
+    </script>
+        
+    
+    
+</body>
+</html>

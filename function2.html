@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="function.js"></script>
+</head>
+<body>
+    <input type="text" id="num1">
+    <input type="text" id="num2" value="10" onchange="">
+    <p id="result"></p>
+    <script>
+         var num1 =document.getElementById("num1");
+         var num2 =document.getElementById("num2");
+         console.log(num2);
+         var result = document.getElementById("result");
+         num2.onchange = function() {
+            //  var rs = parseInt(num1,num2);
+            num1 = parseInt(num1.value);
+            num2 = parseInt(num2.value);
+             result.innerHTML = "<b>"+(num1+num2)+"</b>";
+         };
+
+        // var num2 = document.getElementById("num2");
+        // num2.onchange = sumThis;
+        
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>output.html</title>
+    
+</head>
+<body>
+    <div id = "showResult" style="border : 1px solid red;"></div>
+    <script>
+        var today=new Date();
+        var todate =today.getDate();
+        today.setDate(1);
+        console.log("todate: "+today.getDate());
+        console.log("today: "+today.getDay());
+        console.log(new Date(2020,8,0).getDate());
+
+        var bool1 = 10<8;
+         var sum = 0;
+         var emem= document.getElementById("showResult");
+         
+        // for(var i=0;i<5;i++){
+        //    if(bool1){
+        //        sum+=i;
+        //    }
+        // }
+
+        // if(bool1){
+        //     console.log("참"+bool1);
+        // }else{
+        //     console.log("거짓"+bool1);
+        // }
+        var cols =['일','월','화','수','목','금','토']
+        // for(var i=0;i<cols.length;i++){
+        //     console.log(cols[i]);
+        // }
+        // //향상된 포문..
+        // for(col of cols){
+        //     console.log(col);
+        // }
+        // //첫번째 값은 배열의 요소 두번째 값은 배열의 크기 세번째 요소는 배열의 내용
+        // cols.forEach(function(a,b,c){
+        //     console.log(a,b,c);
+        // });
+        var tag = "<table border  = '1'><tr>";
+        //     for(col of cols){
+        //     console.log(col);
+        //     tag += "<td>"+col+"</td>"
+        // }
+        // tag+= "</tr>"
+
+        cols.forEach(function(a,b,c){
+            if(b){
+                    tag+="<td>"+a+"</td>";
+                }else{
+                    tag+="<td>"+a+"</td>";
+                }
+        })
+         tag+= "</tr>"
+        for(var i = 0;i<5;i++){
+            for(var j =0;j<7;j++){
+                sum++;
+                if(sum>today.getDay()){
+                if(sum<=new Date(2020,9,0).getDate()+today.getDay()){
+                if(sum % 7==1 ){
+                    tag += "<td>"+ (sum-today.getDay()) +"</td>"
+                }else{
+                      tag += "<td>"+ (sum-today.getDay()) +"</td>";
+                }
+                }else{
+                    break;
+                }
+                }else{
+                    tag += "<td>  </td>";
+                }
+            }
+           tag+= "</tr><tr>";
+        }
+        tag += "</tr></table>";
+     
+        emem.innerHTML = tag;
+
+
+
+
+    </script>
+</body>
+</html>

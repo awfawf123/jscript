@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var str = "Hello";
+        var num = 10;
+        var bool = 10 > 8;
+        var func = function () {
+
+        }
+
+        var obj1 = {
+            firstName: "Kildong",
+            lastName: "Hong",
+            age: 30
+        };
+
+        var obj2 = {
+            firstName: "재영",
+            lastName: "최",
+            age: 25
+        };
+
+        var obj3 = {
+            firstName: "성준",
+            lastName: "허",
+            age: 28
+        };
+        var objs = [obj1, obj2, obj3];
+      //  console.log(obj1.firstName);
+       // console.log(obj2["firstName"]);
+
+        for (obj of objs) {
+           // console.log(obj);
+            for (field in obj) {
+                console.log("필드이름: " + field + "," + "값: " + obj[field]);
+            }
+        }
+
+            // for(field in obj3){
+            //     console.log("필드이름: " + field + ","+ "값: " + obj3[field]);
+            // }
+    </script>
+
+</body>
+
+</html>
