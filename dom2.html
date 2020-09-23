@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .lis{
+            background-color: aqua;
+        }
+        #p1{
+            background-color: green;
+        }
+        
+    
+    </style>
+    <script src="dom.js"></script>
+</head>
+ <body id="bdy" onload="loadPage()">
+    <!-- <div>
+        <p id ="hello">Hello</p>
+        <h2 style="color: blue">World</h2>
+    </div> -->
+    <!-- <table>
+        <tr>
+            <th>월</th>
+        </tr>
+        <tr>
+            <td>1</td>
+        
+    </table> -->
+    <script>
+          document.querySelectorAll("body");
+          let bdy = document.getElementsByTagName("body");
+
+          let $div = document.createElement("div");
+          let $p = document.createElement("p");
+          let $tex = document.createTextNode("Hello");
+          $p.setAttribute("id","p1");
+          
+          
+          $div.appendChild($p);
+          $p.appendChild($tex);
+
+          let $h2 = document.createElement("h2");
+          let $tex2 = document.createTextNode("World");
+          $h2.setAttribute("style", "background: blue");
+         
+          $div.appendChild($h2);
+          $h2.appendChild($tex2);
+
+          bdy[0].appendChild($div);
+
+         
+    
+        //  document.querySelectorAll("body");
+        //  let bdy = document.getElementsByTagName("body");
+         // bdy[0].innerHTML = "<h1>Hello</h1>";
+         //<ul><li>오렌지</li></ul>
+
+          let $ul = document.createElement("ul");
+          let $li = document.createElement("li");
+          let $text = document.createTextNode("오렌지");
+          $li.setAttribute("class", "lis");
+
+          $ul.appendChild($li);
+          $li.appendChild($text);
+
+          $text = document.createTextNode("사과");
+          $li = document.createElement("li");
+          $li.setAttribute("style", "background: yellow")
+
+         $li.appendChild($text);
+          $ul.appendChild($li);
+
+
+         bdy[0].appendChild($ul);
+    </script>
+</body>
+</html>
