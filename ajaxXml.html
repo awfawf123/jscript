@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function loadXml(){
+            let xhtp = new XMLHttpRequest();
+
+            xhtp.onreadystatechange = function(){
+                if(xhtp.readyState == 4 && xhtp.status == 200){
+                   // console.log(xhtp.responseXML);
+                    createPage(xhtp.responseXML);
+                }
+            }
+            xhtp.open('get', 'cd_catalog.xml', true);
+            xhtp.send();
+        }
+        function createPage(data){
+            let titles = ['제목','가수','나라','레코드사','가격','년도']
+            
+           // console.log(data);
+            let tbl = document.getElementById("tbl");
+            let cds = data.getElementsByTagName("CD");
+            let tr,td,text;
+
+
+            
+            for(let i=0; i<cds.length; i++){
+                //row 한건생성
+                tr = document.createElement("tr");
+              
+                for(let j=0; j<6; j++){
+                    td = document.createElement("td");
+                text = document.createTextNode(cds[i].children[j].innerHTML);//title
+                td.append(text);
+                tr.append(td);
+                }
+
+                // column 생성 (title,artist,country)
+                // td = document.createElement("td");
+                // text = document.createTextNode(cds[i].children[0].innerHTML);//title
+                // td.append(text);
+                // tr.append(td);
+
+                // td = document.createElement("td");
+                // text = document.createTextNode(cds[i].children[1].innerHTML); //artist
+                // td.append(text);
+                // tr.append(td);
+
+                // td = document.createElement("td");
+                // text = document.createTextNode(cds[i].children[2].innerHTML);  //country
+                // td.append(text);
+                // tr.append(td);
+
+                // td = document.createElement("td");
+                // text = document.createTextNode(cds[i].children[3].innerHTML);
+                // td.append(text);
+                // tr.append(td);
+
+                tbl.append(tr);
+
+                
+                
+
+            }
+            tbl.append("리스트");
+
+        }
+    </script>
+</head>
+<body>
+    <h2>XML 요청</h2><br>
+    <button onclick="loadXml()">클릭</button>
+    <table id="tbl" border="1"></table>
+    
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content{
+            border: 2px dotted red;
+            width: 350px;
+        }
+        .row{
+            display: block;
+            height: 30px;
+            padding: auto;
+        }
+        .label{
+            background-color: bisque;
+            display: inline-block;
+            width: 90px;
+        }
+        .values{
+            background-color: blanchedalmond;
+            display: inline-block;
+            width: auto;
+        }
+        .button{
+            display: inline;
+        }
+    </style>
+    <script src="board.js"></script>
+</head>
+<body onload="getBoardList()">
+    <h2>입력화면</h2>
+    <div class="content">
+        <div class="row">
+            <div class="label">게시글번호</div>
+            <div class="values"><input type="text" name="boardNo" id="boardNo" value="10"></div>
+        </div>
+        <div class="row">
+            <div class="label">제목</div>
+            <div class="values"><input type="text" name="title" id="title" value="자바스크립트"></div>
+        </div>
+        <div class="row">
+            <div class="label">내용</div>
+            <div class="values"><input type="text" name="content" id="content" value="어려워"></div>
+        </div>
+        <div class="row">
+            <div class="label">작성자</div>
+            <div class="values"><input type="text" name="writer" id="writer" value="사람"></div>
+        </div>
+        <div class="row">
+            <div class="button"><button onclick="insertData()">입력</div>
+            <div class="button"><button onclick="updateData()">수정</div>
+        </div>
+    </div>
+    <h1>HTML게시판</h1>
+    <p id="main"></p>
+    
+</body>
+</html>
