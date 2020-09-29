@@ -30,12 +30,12 @@ class Board {
         this._writer = writer;
     }
 } // end of class
-let boardDB = [];
-boardDB.push(new Board(1, '자바스크립트', '웹언어', '최재영'));
+let boardDB = []; // 배열 선언
+boardDB.push(new Board(1, '자바스크립트', '웹언어', '최재영'));//배열에 값 넣어주기
 boardDB.push(new Board(2, '자바', '컴파일러', '김현동'));
 boardDB.push(new Board(3, '오라클', '데이터베이스', '허성준'));
 
-let titles = ['checkbox', 'boardNo', 'title', 'content', 'writer', 'button'];
+let titles = ['checkbox', 'boardNo', 'title', 'content', 'writer', 'button']; //제목 생성
 let table, tr, td, text, checkbox, button;
 
 //title 생성
@@ -49,6 +49,14 @@ function createTitle() {
         if (field === 'checkbox') { 
             checkbox = document.createElement('input');
             checkbox.setAttribute('type', 'checkbox');
+            //checkbox칸 전체선택
+            checkbox.onchange = function(){
+                let chks = document.querySelectorAll('td input[type="checkbox"')
+                console.log(chks);
+                for(let i=0; i<chks.length; i++){
+                    chks[i].checked = this.checked; // checked = true / false
+                }            
+            }
             td.append(checkbox);
             //field값이 버튼일때
         } else if (field === 'button') {
@@ -71,6 +79,7 @@ function getBoardList() {
     table.setAttribute('id', 'tbl');
     table.append(createTitle()); // 타이틀 row
 
+    //데이터 영역
     boardDB.forEach(function (obj, idx) {
         tr = document.createElement('tr');
         tr.setAttribute('id', obj.boardNo);
@@ -82,6 +91,10 @@ function getBoardList() {
             if (field === 'checkbox') {
                 checkbox = document.createElement('input');
                 checkbox.setAttribute('type', 'checkbox');
+
+                checkbox.onchange = function(){
+                   synchCheckbox();
+                }
                 //상세보기 버튼
                 checkbox.onclick = function () {
                     let id = this.parentNode.parentNode.id;
@@ -111,6 +124,8 @@ function getBoardList() {
     });
     document.getElementById("main").append(table); 
 }
+
+
 //자료 추가
 function insertData() {
     let boardNo = document.getElementById('boardNo').value;
@@ -180,10 +195,71 @@ function showDetail(){
      document.getElementById('content').value = board.content;
      document.getElementById('writer').value = board.writer;
 }
-
+//수정
 function updateData(){
-    let trs = document.querySelectorAll('tbl',tr[id]);
+    //element 정보 가지고 옴
+    let boardNo = document.getElementById('boardNo').value;
+    let title = document.getElementById('title').value;
+    let content = document.getElementById('content').value;
+    let writer = document.getElementById('writer').value;
+
+    // 배열에서 수정
+    for(let i =0; i<boardDB.length; i++){
+        if(boardDB[i].boardNo == boardNo){
+            boardDB[i] = new Board(boardNo, title, content, writer);// 보드 생성자 선언
+            break;
+        }
+    }
+    console.log('break');
+    //화면에서 출력
+    let trs = document.querySelectorAll('#tbl tr[id]');//table id가 tbl. table안에 tr태그 찾아서 id값(<tr id = 'i'>);
+    for (let i = 0; i<trs.length; i++){
+        console.log(trs[i].id, boardNo)
+        if(trs[i].id == boardNo){
+            trs[i].children[2].innerHTML = title;
+            trs[i].children[3].innerHTML = content;
+            trs[i].children[4].innerHTML = writer;
+            break;
+        }
+    }
     
     
 
+}
+//전체선택 checkbox와 각 데이터별 checkbox 동기
+function synchCheckbox(){
+    // 1) checkall true로 가정 데이터영역에 있는 값중 하나라도 false면 체크 풀림
+    let th_ckb = document.querySelectorAll('th input[type="checkbox"]'); //th 밑에있는 input값
+    let td_ckb = document.querySelectorAll('td input[type="checkbox"]');
+
+   // console.log(th_ckb[0].checked);
+
+    th_ckb[0].checked = true;
+    for(let i=0; i<td_ckb.length; i++){
+        if(!td_ckb[i].checked){ //check 해제 되어있는 부분
+            th_ckb[0].checked = false;
+            break;
+        }
+    }
+}
+
+function deleteChecked(){
+    //화면에서 삭제
+    let checkedNo = []; 
+    let chks = document.querySelectorAll('td input[type="checkbox"]');
+    for(let i=0; i<chks.length; i++){
+        if(chks[i].checked == true){
+            checkedNo.push(chks[i].parentNode.parentNode.id);
+            chks[i].parentNode.parentNode.remove();
+        }
+    }
+    //배열에서 삭제
+    checkedNo.forEach(function(obj,idx){
+        for(let i=0; i<boardDB.length; i++){
+            if(boardDB[i].boardNo == obj){
+                boardDB.splice(i, 1);
+                break;
+            }
+        }
+    });
 }
